@@ -16,31 +16,28 @@ int main() {
     int t;
     cin>>t;
     while(t--) {
-        int n,k;
-        cin>>n>>k;
-        string s;
-        cin>>s;
-        int upper=0,lower=0;
-        forn(s.length()) {
-            if(isupper(s[i])) {
-                upper++;
+        int n;
+        cin>>n;
+        int a[n];
+        unordered_map<int, int> seq;
+        forn(n) {
+            cin>>a[i];
+            if(seq.find(a[i])==seq.end()) {
+                seq[a[i]]=1;
             }
             else {
-                lower++;
+                seq[a[i]]++;
             }
         }
-        if(upper<=k && lower<=k) {
-            cout<<"both\n";
+        if(seq.size()==1) {
+            cout<<0<<'\n';
+            continue;
         }
-        else if(upper<=k) {
-            cout<<"chef\n";
+        int maxi=-1;
+        for(auto i:seq) {
+            maxi=max(maxi,i.second);
         }
-        else if(lower<=k) {
-            cout<<"brother\n";
-        }
-        else {
-            cout<<"none\n";
-        }
+        cout<<n-maxi<<'\n';
     }
     return 0;
 }

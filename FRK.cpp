@@ -15,32 +15,25 @@ int main() {
     fastio;tie;
     int t;
     cin>>t;
+    int fr=0;
+    vector<string> sub={"ch","he","ef"};
     while(t--) {
-        int n,k;
-        cin>>n>>k;
         string s;
         cin>>s;
-        int upper=0,lower=0;
-        forn(s.length()) {
-            if(isupper(s[i])) {
-                upper++;
+        for(int i=0;i<s.length()-1;i++) {
+            int flag=0;
+            for(int j=0;j<3;j++) {
+                if(sub[j]==s.substr(i,2)) {
+                    fr++;
+                    flag=1;
+                    break;
+                }
             }
-            else {
-                lower++;
+            if(flag) {
+                break;
             }
-        }
-        if(upper<=k && lower<=k) {
-            cout<<"both\n";
-        }
-        else if(upper<=k) {
-            cout<<"chef\n";
-        }
-        else if(lower<=k) {
-            cout<<"brother\n";
-        }
-        else {
-            cout<<"none\n";
         }
     }
+    cout<<fr;
     return 0;
 }
